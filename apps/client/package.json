@@ -12,6 +12,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.111",
     "@iconify-json/simple-icons": "^1.2.84",
+    "@logto/vue": "^3.0.13",
     "@nuxt/ui": "^4.8.1",
     "nuxt": "^4.4.6",
     "tailwindcss": "^4.3.0"

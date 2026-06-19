@@ -16,3 +16,12 @@ node_modules
 #!.yarn/cache
 .pnp.*
 **/**.env.local
+
+# Ignore IntelliJ project files by default
+.idea/*
+
+# But keep shared IntelliJ settings
+!.idea/jsLinters/
+!.idea/jsLinters/**
+
+**/**.env
