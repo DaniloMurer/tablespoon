@@ -5,6 +5,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     appId: 'ozbjn96u12uxei899vkwj',
     endpoint: 'https://auth.churrer.dev',
     resources: ['https://tablespoon.churrer.dev'],
-    scopes: [UserScope.Email, UserScope.Profile]
+    scopes: [UserScope.Email, UserScope.Profile, UserScope.Roles, 'create:recruitment_run', 'delete:recruitment_run']
   });
 });
