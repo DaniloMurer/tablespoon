@@ -1,6 +1,8 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
+import type { Request } from 'express';
+import { Token } from './auth/jwt.strategy';
 
 @Controller()
 export class AppController {
@@ -13,7 +15,9 @@ export class AppController {
 
   @Get('protected')
   @UseGuards(JwtAuthGuard)
-  getProtected(): string {
+  getProtected(@Req() req: Request): string {
+    const user = req.user as Token;
+    console.log('Authenticated user:', user);
     return 'This is a protected route';
   }
 }

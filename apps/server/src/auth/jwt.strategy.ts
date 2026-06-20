@@ -1,7 +1,19 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { passportJwtSecret } from 'jwks-rsa';
-import e from 'express';
+
+type LogtoTokenPayoad = {
+  sub: string;
+  email: string;
+  roles: string[];
+  scope: string;
+};
+
+export type Token = {
+  userId: string;
+  email: string;
+  scope: string[];
+};
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
@@ -18,16 +30,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  validate(payload: any) {
+  validate(payload: LogtoTokenPayoad): Token {
     return {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
       userId: payload.sub,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+
       email: payload.email,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-      roles: payload.roles ?? [],
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
-      scopes: payload.scopes ?? ''
+
+      scope: payload.scope.split(' ')
     };
   }
 }
